@@ -16,7 +16,7 @@ function JobsScreen() {
     {
       id: '1',
       companyName: 'Tech Co',
-    //   companyLogo: require('../assets/logo1.png'), // Replace with actual image path
+      companyLogo: require('../assets/logo1.png'), // Replace with actual image path
       location: 'City A',
       position: 'Software Engineer',
       salary: '$80,000 - $100,000 per year',
@@ -26,7 +26,7 @@ function JobsScreen() {
     {
       id: '2',
       companyName: 'Data Corp',
-    //   companyLogo: require('../assets/logo2.png'), // Replace with actual image path
+      companyLogo: require('../assets/logo2.png'), // Replace with actual image path
       location: 'City B',
       position: 'Data Scientist',
       salary: '$90,000 - $110,000 per year',
@@ -36,7 +36,7 @@ function JobsScreen() {
     {
       id: '3',
       companyName: 'Design Studio',
-    //   companyLogo: require('../assets/logo3.png'),
+      companyLogo: require('../assets/logo3.png'),
       location: 'City C',
       position: 'UI/UX Designer',
       salary: '$70,000 - $90,000 per year',
@@ -46,7 +46,7 @@ function JobsScreen() {
     {
       id: '4',
       companyName: 'Health Innovations',
-    //   companyLogo: require('../assets/logo4.png'),
+      companyLogo: require('../assets/logo4.png'),
       location: 'City D',
       position: 'Medical Researcher',
       salary: '$100,000 - $120,000 per year',
@@ -56,7 +56,7 @@ function JobsScreen() {
     {
       id: '5',
       companyName: 'E-commerce Solutions',
-    //   companyLogo: require('../assets/logo5.png'),
+      companyLogo: require('../assets/logo5.png'),
       location: 'City E',
       position: 'E-commerce Manager',
       salary: '$85,000 - $110,000 per year',
@@ -67,7 +67,7 @@ function JobsScreen() {
     {
       id: '6',
       companyName: 'Digital Marketing Agency',
-    //   companyLogo: require('../assets/logo6.png'),
+      companyLogo: require('../assets/logo6.png'),
       location: 'City F',
       position: 'Digital Marketing Specialist',
       salary: '$75,000 - $95,000 per year',
@@ -77,7 +77,7 @@ function JobsScreen() {
     {
       id: '7',
       companyName: 'Green Energy Solutions',
-    //   companyLogo: require('../assets/logo7.png'),
+      companyLogo: require('../assets/logo7.png'),
       location: 'City G',
       position: 'Environmental Engineer',
       salary: '$90,000 - $110,000 per year',
@@ -87,7 +87,7 @@ function JobsScreen() {
     {
       id: '8',
       companyName: 'Finance Experts Ltd.',
-    //   companyLogo: require('../assets/logo8.png'),
+      companyLogo: require('../assets/logo8.png'),
       location: 'City H',
       position: 'Financial Analyst',
       salary: '$80,000 - $100,000 per year',
@@ -97,7 +97,7 @@ function JobsScreen() {
     {
       id: '9',
       companyName: 'Mobile App Innovators',
-    //   companyLogo: require('../assets/logo9.png'),
+      companyLogo: require('../assets/logo9.png'),
       location: 'City I',
       position: 'Mobile App Developer',
       salary: '$85,000 - $105,000 per year',
@@ -107,7 +107,7 @@ function JobsScreen() {
     {
       id: '10',
       companyName: 'Fashion Trends Inc.',
-    //   companyLogo: require('../assets/logo10.png'),
+      companyLogo: require('../assets/logo10.png'),
       location: 'City J',
       position: 'Fashion Designer',
       salary: '$70,000 - $90,000 per year',
