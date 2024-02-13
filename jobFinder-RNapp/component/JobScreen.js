@@ -8,7 +8,7 @@ import {
   Platform,
   StyleSheet,
 } from 'react-native';
-//import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 function JobsScreen() {
   // Sample job data
@@ -120,12 +120,32 @@ function JobsScreen() {
   // Add a new state to track which job's appointment is set
   const [appointmentSet, setAppointmentSet] = useState({});
 
+  // Add a new state to track the selected date for appointments
+  const [selectedDate, setSelectedDate] = useState({});
+
+  // Add a new state to control the visibility of the date picker
+  const [showDatePicker, setShowDatePicker] = useState({});
+
   // Function to handle setting an appointment
-  const handleSetAppointment = (id) => {
+  const handleSetAppointment = (id, date) => {
     setAppointmentSet((prevState) => ({
       ...prevState,
       [id]: true,
     }));
+    setSelectedDate((prevState) => ({
+      ...prevState,
+      [id]: date,
+    }));
+  };
+
+  // Function to handle date change
+  const handleDateChange = (event, selectedDate, itemId) => {
+    const currentDate = selectedDate || new Date();
+    setShowDatePicker((prevState) => ({
+      ...prevState,
+      [itemId]: false, // Hide the DateTimePicker after selection
+    }));
+    handleSetAppointment(itemId, currentDate);
   };
 
   // Render individual job item
@@ -154,13 +174,35 @@ function JobsScreen() {
           styles.appointmentButton,
           appointmentSet[item.id] ? styles.buttonClicked : null,
         ]}
-        onPress={() => handleSetAppointment(item.id)}
+        onPress={() => {
+          if (!appointmentSet[item.id]) {
+            // Toggle the visibility of the DateTimePicker
+            setShowDatePicker((prevState) => ({
+              ...prevState,
+              [item.id]: !prevState[item.id],
+            }));
+          }
+        }}
         disabled={appointmentSet[item.id]}
       >
         <Text style={styles.buttonText}>
-          {appointmentSet[item.id] ? 'Appointment Set' : 'Set Appointment'}
+          {appointmentSet[item.id]
+            ? `Appointment Set ${
+                selectedDate[item.id]?.toLocaleDateString() || ''
+              }`
+            : 'Set Appointment'}
         </Text>
       </TouchableOpacity>
+
+      {/* DateTimePicker */}
+      {showDatePicker[item.id] && (
+        <DateTimePicker
+          value={selectedDate[item.id] || new Date()}
+          mode="date"
+          display="default"
+          onChange={(event, date) => handleDateChange(event, date, item.id)}
+        />
+      )}
     </View>
   );
 
