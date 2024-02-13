@@ -1,5 +1,14 @@
-import React from 'react';
-import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  FlatList,
+  Image,
+  TouchableOpacity,
+  Platform,
+  StyleSheet,
+} from 'react-native';
+//import DateTimePicker from '@react-native-community/datetimepicker';
 
 function JobsScreen() {
   // Sample job data
@@ -108,6 +117,17 @@ function JobsScreen() {
     // Add more jobs as needed
   ];
 
+  // Add a new state to track which job's appointment is set
+  const [appointmentSet, setAppointmentSet] = useState({});
+
+  // Function to handle setting an appointment
+  const handleSetAppointment = (id) => {
+    setAppointmentSet((prevState) => ({
+      ...prevState,
+      [id]: true,
+    }));
+  };
+
   // Render individual job item
   const renderItem = ({ item }) => (
     <View
@@ -130,16 +150,16 @@ function JobsScreen() {
 
       {/* "Set Appointment" button */}
       <TouchableOpacity
-        style={{
-          backgroundColor: 'tomato',
-          padding: 10,
-          borderRadius: 5,
-          marginTop: 10,
-          alignItems: 'center',
-        }}
-        //onPress={() => handleSetAppointment(item)}
+        style={[
+          styles.appointmentButton,
+          appointmentSet[item.id] ? styles.buttonClicked : null,
+        ]}
+        onPress={() => handleSetAppointment(item.id)}
+        disabled={appointmentSet[item.id]}
       >
-        <Text style={{ color: 'white' }}>Set Appointment</Text>
+        <Text style={styles.buttonText}>
+          {appointmentSet[item.id] ? 'Appointment Set' : 'Set Appointment'}
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -155,5 +175,27 @@ function JobsScreen() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  itemContainer: {
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+  },
+  appointmentButton: {
+    backgroundColor: 'tomato',
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 10,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: 'white',
+  },
+  buttonClicked: {
+    backgroundColor: 'gray',
+  },
+  // ... (add other styles as needed)
+});
 
 export default JobsScreen;
