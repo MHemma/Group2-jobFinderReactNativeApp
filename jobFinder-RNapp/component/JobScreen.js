@@ -134,10 +134,10 @@ function JobsScreen() {
       style={{ padding: 10, borderBottomWidth: 1, borderBottomColor: '#ccc' }}
     >
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        {/* <Image
+        <Image
           source={item.companyLogo}
-          style={{ width: 40, height: 40, marginRight: 10 }}
-        /> */}
+          style={{ width: 60, height: 60, marginRight: 10 }}
+        />
         <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
           {item.position}
         </Text>
