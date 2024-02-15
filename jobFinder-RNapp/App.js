@@ -16,6 +16,15 @@ import SettingScreen from "./component/SettingScreen";
 import FeedScreen from "./component/FeedScreen";
 import LoginScreen from "./component/LoginScreen";
 
+
+    // const [userId, setUserId] = useState (null);
+    // const [userIdInput, setUserIdInput] = useState(null);
+    // const [userPasswordInput, setUserPasswordInput] = useState(null);
+    // const [userLoggedin, setUserLoggedIn] = useState(false);
+    // const [loginError, setLoginError] = useState('');
+
+
+
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -39,6 +48,8 @@ function HomeTabs({ navigation }) {
     navigation.navigate('Home ', { screen: 'Home' });
   }, [navigation]);
 
+  const numberOfNotificationsForJobs = 3;
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -60,22 +71,22 @@ function HomeTabs({ navigation }) {
             <Ionicons name={iconName} size={size} color={color}></Ionicons>
           );
         },
-        // tabBarBadgeStyle :{
-        //   backgroundColor: 'pink',
-        //   color: 'black'
-        // },
-        // // set text color for active and inactive tab
-        // // set for all tabs
-        // tabBarActiveTintColor: 'green',
-        // tabBarInactiveTintColor: 'gray',
+        tabBarBadgeStyle :{
+          backgroundColor: '#CD5C5C',
+          color: 'black'
+        },
+        // set text color for active and inactive tab
+        // set for all tabs
+        tabBarActiveTintColor: '#6495ED',
+        tabBarInactiveTintColor: 'gray',
 
       })}
     >
       <Tab.Screen
         name="Login"
         component={LoginScreen}
-        options={{ headerShown: false }}
-        // initialParams={{}}
+        // options={{ headerShown: false }}
+        // initialParams={{userId,setUserId, userIdInput,setUserIdInput, userPasswordInput, setUserPasswordInput,userLoggedin, setUserLoggedIn, loginError, setLoginError }}
       ></Tab.Screen>
       <Tab.Screen
         name="Home "
@@ -86,13 +97,14 @@ function HomeTabs({ navigation }) {
       <Tab.Screen
         name="Profile"
         component={ProfileScreen}
-        options={{ headerShown: false }}
+        // options={{ headerShown: false }}
         // initialParams={{ userId}}
       ></Tab.Screen>
       <Tab.Screen
         name="Jobs"
         component={JobScreen}
-        options={{ headerShown: false }}
+        options ={{tabBarBadge: numberOfNotificationsForJobs}}
+        // options={{ headerShown: false }}
       ></Tab.Screen>
     </Tab.Navigator>
   );

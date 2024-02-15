@@ -3,7 +3,9 @@ import { Button} from '@rneui/themed';
 import { NavigationContainer , useNavigation} from "@react-navigation/native";
 import React, { useEffect, useState,} from "react";
 
-export default function LoginScreen() {
+export default function LoginScreen(
+    // {userId,setUserId, userIdInput,setUserIdInput, userPasswordInput, setUserPasswordInput,userLoggedin, setUserLoggedIn, loginError, setLoginError }
+    ) {
     const [userId, setUserId] = useState (null);
     const [userIdInput, setUserIdInput] = useState(null);
     const [userPasswordInput, setUserPasswordInput] = useState(null);
@@ -32,7 +34,7 @@ export default function LoginScreen() {
 
     return(
         <View style ={styles.container}>
-            <Text>Login Screen</Text>
+            {/* <Text>Login Screen</Text> */}
 
             <View style={styles.box}>        
                 <Text style={{flex:1, textAlign: 'right'}}>ID:</Text>
