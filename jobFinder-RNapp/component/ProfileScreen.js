@@ -2,16 +2,20 @@ import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
-  Button,
   Image,
   View,
   Platform,
   Dimensions,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
+import { Input, Button, Card } from "@rneui/themed";
 
 export default function ProfileScreen() {
   const [image, setImage] = useState(null);
+  const [name, setName] = useState("");
+  const [jobTitle, setJobTitle] = useState("");
+  const [jobExperience, setJobExperience] = useState("");
+  const [askingSalary, setAskingSalary] = useState("");
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -30,29 +34,43 @@ export default function ProfileScreen() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Profile</Text>
+      <Text style={styles.headerText}>My Job Profile</Text>
+      <View style={styles.content}>
+        <View style={styles.underline}></View>
+        <View style={styles.imageContainer}>
+          <Image
+            source={
+              image
+                ? { uri: image }
+                : require("../assets/defaultProfileImage.png")
+            }
+            style={styles.profileImage}
+          />
+        </View>
+        <Button
+          title="Select your Profile photo"
+          onPress={pickImage}
+          style={styles.pickImageButton}
+        />
       </View>
-      <View style={styles.underline}></View>
-      <View style={styles.imageContainer}>
-        {/* <Image
-          source={
-            image ? { uri: image } : require("./assets/defaultProfileImage.png")
-          }
-          style={styles.profileImage}
-        /> */}
-      </View>
-      {/* <Button
-        title="Pick an image from camera roll"
-        onPress={pickImage}
-        style={styles.pickImageButton}
-      /> */}
-
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button title="Pick an image from camera roll" onPress={pickImage} />
-      {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
-    </View>
-
+      <Card containerStyle={styles.card}>
+        <Input placeholder="Name" onChangeText={setName} value={name} />
+        <Input
+          placeholder="Job Title"
+          onChangeText={setJobTitle}
+          value={jobTitle}
+        />
+        <Input
+          placeholder="Job Experience"
+          onChangeText={setJobExperience}
+          value={jobExperience}
+        />
+        <Input
+          placeholder="Asking Salary"
+          onChangeText={setAskingSalary}
+          value={askingSalary}
+        />
+      </Card>
     </View>
   );
 }
@@ -64,16 +82,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
   headerText: {
     fontSize: 24,
     fontWeight: "bold",
+    marginTop: 20,
+  },
+  content: {
+    alignItems: "center",
   },
   underline: {
-    width: "100%", // Set width to full screen
+    width: "50%", // Set width to full screen
     height: 1,
     backgroundColor: "black",
   },
@@ -91,5 +109,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "black",
     borderRadius: 10,
+  },
+  card: {
+    marginTop: 20,
+    width: "80%",
+    marginBottom: 20, // Added marginBottom to give space below the card
   },
 });
