@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import { Button } from "@rneui/themed";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -16,14 +16,13 @@ import SettingScreen from "./component/SettingScreen";
 import FeedScreen from "./component/FeedScreen";
 import LoginScreen from "./component/LoginScreen";
 
+import backgroundImg from "./assets/background-main.jpg";
 
-    // const [userId, setUserId] = useState (null);
-    // const [userIdInput, setUserIdInput] = useState(null);
-    // const [userPasswordInput, setUserPasswordInput] = useState(null);
-    // const [userLoggedin, setUserLoggedIn] = useState(false);
-    // const [loginError, setLoginError] = useState('');
-
-
+// const [userId, setUserId] = useState (null);
+// const [userIdInput, setUserIdInput] = useState(null);
+// const [userPasswordInput, setUserPasswordInput] = useState(null);
+// const [userLoggedin, setUserLoggedIn] = useState(false);
+// const [loginError, setLoginError] = useState('');
 
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -45,13 +44,14 @@ function HomeTabs({ navigation }) {
   const handleHomePress = useCallback(() => {
     // Your logic when the Home tab is pressed
     // navigation.navigate('Home')
-    navigation.navigate('Home ', { screen: 'Home' });
+    navigation.navigate("Home ", { screen: "Home" });
   }, [navigation]);
 
   const numberOfNotificationsForJobs = 3;
 
   return (
     <Tab.Navigator
+      tabBarStyle={{ backgroundColor: "transparent", elevation: 0 }} // Set tab bar background to transparent
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
@@ -67,25 +67,41 @@ function HomeTabs({ navigation }) {
           if (route.name === "Jobs") {
             iconName = focused ? "search" : "search-outline";
           }
-          return (
-            <Ionicons name={iconName} size={size} color={color}></Ionicons>
-          );
+          return <Ionicons name={iconName} size={20} color={color}></Ionicons>;
         },
-        tabBarBadgeStyle :{
-          backgroundColor: '#CD5C5C',
-          color: 'black'
+        tabBarBadgeStyle: {
+          backgroundColor: "#ff3333",
+          color: "white",
+          fontSize: 12,
+          left: 8,
+          top: 0,
         },
         // set text color for active and inactive tab
         // set for all tabs
-        tabBarActiveTintColor: '#6495ED',
-        tabBarInactiveTintColor: 'gray',
-
+        tabBarActiveTintColor: "black",
+        tabBarInactiveTintColor: "gray",
       })}
+      tabBarOptions={{
+        activeTintColor: "#6495ED",
+        inactiveTintColor: "gray",
+        labelStyle: {
+          fontSize: 10,
+          fontWeight: "400",
+          marginBottom: 8,
+        },
+        tabStyle: {
+          backgroundColor: "transparent",
+          marginTop: 8,
+        },
+        indicatorStyle: {
+          backgroundColor: "transparent",
+        },
+      }}
     >
       <Tab.Screen
         name="Login"
         component={LoginScreen}
-        // options={{ headerShown: false }}
+        options={{ headerShown: true }}
         // initialParams={{userId,setUserId, userIdInput,setUserIdInput, userPasswordInput, setUserPasswordInput,userLoggedin, setUserLoggedIn, loginError, setLoginError }}
       ></Tab.Screen>
       <Tab.Screen
@@ -97,14 +113,16 @@ function HomeTabs({ navigation }) {
       <Tab.Screen
         name="Profile"
         component={ProfileScreen}
-        // options={{ headerShown: false }}
+        options={{ headerShown: true }}
         // initialParams={{ userId}}
       ></Tab.Screen>
       <Tab.Screen
         name="Jobs"
         component={JobScreen}
-        options ={{tabBarBadge: numberOfNotificationsForJobs}}
-        // options={{ headerShown: false }}
+        options={{
+          tabBarBadge: numberOfNotificationsForJobs,
+          headerShown: true,
+        }}
       ></Tab.Screen>
     </Tab.Navigator>
   );
@@ -112,12 +130,12 @@ function HomeTabs({ navigation }) {
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer style={styles.navigationContainer}>
       <Stack.Navigator>
         <Stack.Screen
           name="HomeTabs"
           component={HomeTabs}
-          options={{ headerShown: false }}
+          options={{ headerStyle: { height: 0 } }}
         ></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
@@ -129,6 +147,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
+    justifyContent: "center",
+  },
+  background: {
+    flex: 1,
+    resizeMode: "cover",
     justifyContent: "center",
   },
 });
