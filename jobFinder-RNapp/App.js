@@ -134,7 +134,7 @@ function HomeTabs({ navigation }) {
       <Tab.Screen
         name="Home "
         component={DrawerContent}
-        options={{ headerShown: false }}
+        // options={{ headerShown: false }}
         listeners={{ tabPress: handleHomePress }}
       ></Tab.Screen>
       <Tab.Screen
