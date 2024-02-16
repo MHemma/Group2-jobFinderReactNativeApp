@@ -226,18 +226,18 @@ function JobsScreen() {
       <View
         style={{ flex: 1, justifyContent: "center", alignItems: "stretch" }}
       >
-        {/* <Text
+        <Text
           style={{
-            marginTop: 30,
-            fontSize: 24,
+            paddingVertical: 10,
+            fontSize: 21,
             textAlign: "center",
-            fontWeight: "600",
+            fontWeight: "bold",
             color: "rgba(51, 51, 51, 1)",
-            backgroundColor: "rgba(255, 255, 255, 0.50)",
+            backgroundColor: "rgba(255, 255, 255, 0.75)",
           }}
         >
-          Jobs List
-        </Text> */}
+          Jobs
+        </Text>
 
         {/* FlatList to display the list of jobs */}
         <FlatList

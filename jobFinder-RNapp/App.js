@@ -1,4 +1,10 @@
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import {
+  ImageBackground,
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+} from "react-native";
 import { Button } from "@rneui/themed";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -27,6 +33,16 @@ import backgroundImg from "./assets/background-main.jpg";
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
+
+// Get the screen dimensions
+const screenWidth = Dimensions.get("window").width;
+const screenHeight = Dimensions.get("window").height;
+
+// Define the percentage of the screen height you want the header to be
+const headerHeightPercentage = -0.03; // For example, 10%
+
+// Calculate the header height
+const headerHeight = screenHeight * headerHeightPercentage;
 
 function DrawerContent() {
   return (
@@ -101,7 +117,18 @@ function HomeTabs({ navigation }) {
       <Tab.Screen
         name="Login"
         component={LoginScreen}
-        options={{ headerShown: true }}
+        options={{
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: "rgba(51, 51, 51, 1)", // Change the background color of the header
+          },
+          headerTitle: "",
+          // headerTitleStyle: {
+          //   color: "rgba(51, 51, 51, 1)", // Change the color of the header title text
+          // },
+          headerTintColor: "white",
+          headerStatusBarHeight: headerHeight,
+        }}
         // initialParams={{userId,setUserId, userIdInput,setUserIdInput, userPasswordInput, setUserPasswordInput,userLoggedin, setUserLoggedIn, loginError, setLoginError }}
       ></Tab.Screen>
       <Tab.Screen
@@ -113,7 +140,18 @@ function HomeTabs({ navigation }) {
       <Tab.Screen
         name="Profile"
         component={ProfileScreen}
-        options={{ headerShown: true }}
+        options={{
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: "rgba(51, 51, 51, 1)", // Change the background color of the header
+          },
+          headerTitle: "",
+          // headerTitleStyle: {
+          //   color: "rgba(51, 51, 51, 1)", // Change the color of the header title text
+          // },
+          headerTintColor: "white",
+          headerStatusBarHeight: headerHeight,
+        }}
         // initialParams={{ userId}}
       ></Tab.Screen>
       <Tab.Screen
@@ -122,6 +160,15 @@ function HomeTabs({ navigation }) {
         options={{
           tabBarBadge: numberOfNotificationsForJobs,
           headerShown: true,
+          headerStyle: {
+            backgroundColor: "rgba(51, 51, 51, 1)", // Change the background color of the header
+          },
+          headerTitle: "",
+          // headerTitleStyle: {
+          //   color: "rgba(51, 51, 51, 1)", // Change the color of the header title text
+          // },
+          headerTintColor: "white",
+          headerStatusBarHeight: headerHeight,
         }}
       ></Tab.Screen>
     </Tab.Navigator>

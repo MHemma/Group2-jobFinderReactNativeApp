@@ -37,6 +37,19 @@ export default function ProfileScreen() {
 
   return (
     <ImageBackground source={backgroundImg} style={styles.background}>
+      <Text
+        style={{
+          paddingVertical: 10,
+          fontSize: 21,
+          textAlign: "center",
+          fontWeight: "bold",
+          color: "rgba(51, 51, 51, 1)",
+          backgroundColor: "rgba(255, 255, 255, 0.75)",
+        }}
+      >
+        Profile
+      </Text>
+
       <View style={styles.container}>
         {/* <Text style={styles.headerText}>My Job Profile</Text> */}
         <View style={styles.content}>
